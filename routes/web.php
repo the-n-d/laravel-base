@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\MyPlaceController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('/lol', "@index");
 
-Route::get('/lol', [MyPlaceController::class, 'index']);
+Route::get('/lol', [PostController::class, "index"]);

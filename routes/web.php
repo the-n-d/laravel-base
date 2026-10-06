@@ -21,3 +21,5 @@ Route::get('/', function () {
 Route::get('/lol', "@index");
 
 Route::get('/lol', [PostController::class, "index"]);
+
+Route::get("/post/create", [PostController::class, "create"]);

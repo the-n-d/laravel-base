@@ -9,8 +9,33 @@ class PostController extends Controller
 {
     function index()
     {
-        $post = Post::find(1);
-        dd($post);
-        dd($post->likes);
+        $post = Post::where('is_published', 0)->first();
+        dd($post->title);
+        dd('end');
+    }
+
+    function create(){
+        $posts = [
+            [
+                'title' => 'Пост 1',
+                'content' => 'Контент первого поста',
+                'image' => 'image1.jpg',
+                'likes' => 5,
+                'is_published' => 1,
+            ],
+            [
+                'title' => 'Пост 2',
+                'content' => 'Контент второго поста',
+                'image' => 'image2.jpg',
+                'likes' => 10,
+                'is_published' => 1,
+            ],
+        ];
+
+        foreach ($posts as $post) {
+            Post::create($post);
+        }
+
+        dump("created");
     }
 }

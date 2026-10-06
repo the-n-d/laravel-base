@@ -14,7 +14,8 @@ class PostController extends Controller
         dd('end');
     }
 
-    function create(){
+    function create()
+    {
         $posts = [
             [
                 'title' => 'Пост 1',
@@ -37,5 +38,15 @@ class PostController extends Controller
         }
 
         dump("created");
+    }
+
+    function update()
+    {
+        $post = Post::find(1);
+
+        $post->update([
+            'likes' => 100000,
+            'title' => 'pivo',
+        ]);
     }
 }

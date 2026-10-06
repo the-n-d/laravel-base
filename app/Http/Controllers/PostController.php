@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    function index()
+    public function index()
     {
         $post = Post::where('is_published', 0)->first();
         dd($post->title);
         dd('end');
     }
 
-    function create()
+    public function create()
     {
         $posts = [
             [
@@ -40,7 +40,7 @@ class PostController extends Controller
         dump("created");
     }
 
-    function update()
+    public function update()
     {
         $post = Post::find(1);
 
@@ -48,5 +48,12 @@ class PostController extends Controller
             'likes' => 100000,
             'title' => 'pivo',
         ]);
+    }
+
+    public function delete($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->back();
     }
 }

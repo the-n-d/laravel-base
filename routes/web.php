@@ -18,10 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/lol', "@index");
-
 Route::get('/lol', [PostController::class, "index"]);
 
 Route::get("/post/create", [PostController::class, "create"]);
-
 Route::get("/post/update", [PostController::class, "update"]);
+Route::get('/post/first-or-create', [PostController::class, 'firstOrCreate']);
+Route::get('/post/update-or-create', [PostController::class, 'updateOrCreate']);

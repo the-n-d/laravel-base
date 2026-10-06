@@ -56,4 +56,40 @@ class PostController extends Controller
         $post->delete();
         return redirect()->back();
     }
+
+    public function firstOrCreate()
+    {
+        $post = Post::firstOrCreate(
+            [
+                'title' => 'сам пост',
+            ],
+            [
+                'title' => 'сам пост',
+                'content' => 'сам контент',
+                'image' => 'img.jpg',
+                'likes' => 5000,
+                'is_published' => 1,
+            ]
+        );
+
+        dump($post->content);
+    }
+
+    public function UpdateOrCreate($id, $title, $content)
+    {
+        $post = Post::updateOrCreate(
+            [
+                'title' => 'сам пост',
+            ],
+            [
+                'title' => 'Новао',
+                'content' => 'сам да контент',
+                'image' => 'img.jpg',
+                'likes' => 5000,
+                'is_published' => 1,
+            ]
+        );
+
+        dump($post->content);
+    }
 }

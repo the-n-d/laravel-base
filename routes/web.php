@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +26,7 @@ Route::get("/post/create", [PostController::class, "create"]);
 Route::get("/post/update", [PostController::class, "update"]);
 Route::get('/post/first-or-create', [PostController::class, 'firstOrCreate']);
 Route::get('/post/update-or-create', [PostController::class, 'updateOrCreate']);
+
+Route::get('/main', [MainController::class,'index']);
+Route::get('/contacts', [ContactController::class,'index']);
+Route::get('/about', action: [AboutController::class,'index']);

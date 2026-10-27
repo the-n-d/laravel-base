@@ -14,43 +14,52 @@ class PostController extends Controller
         // dd('end');
 
         $posts = Post::all();
-        return view("posts", compact("posts"));
+        return view("post.index", compact("posts"));
     }
 
     public function create()
     {
-        $posts = [
-            [
-                'title' => 'Пост 1',
-                'content' => 'Контент первого поста',
-                'image' => 'image1.jpg',
-                'likes' => 5,
-                'is_published' => 1,
-            ],
-            [
-                'title' => 'Пост 2',
-                'content' => 'Контент второго поста',
-                'image' => 'image2.jpg',
-                'likes' => 10,
-                'is_published' => 1,
-            ],
-        ];
-
-        foreach ($posts as $post) {
-            Post::create($post);
-        }
-
-        dump("created");
+        return view("post.create");
     }
 
-    public function update()
+    public function store()
     {
-        $post = Post::find(1);
-
-        $post->update([
-            'likes' => 100000,
-            'title' => 'pivo',
+        $data = request()->validate([
+            "title" => "string",
+            "content" => "string",
+            "likes" => "string",
         ]);
+
+        Post::create($data);
+        return redirect()->route('post.index');
+    }
+
+    public function show(Post $post)
+    {
+        return view('post.show', compact('post'));
+    }
+
+    public function edit(Post $post)
+    {
+        return view('post.edit', compact('post'));
+    }
+
+    public function update(Request $request, Post $post)
+    {
+        $data = request()->validate([
+            "title" => "string",
+            "content" => "string",
+            "likes" => "string",
+        ]);
+
+        $post->update($data);
+        return redirect()->route('post.show', $post->id);
+
+    }
+
+    public function destroy(Post $post){
+        $post->delete();
+        return redirect()->route('post.index');
     }
 
     public function delete($id)

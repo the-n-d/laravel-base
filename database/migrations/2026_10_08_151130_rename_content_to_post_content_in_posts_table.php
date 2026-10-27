@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('post_content_in_posts', function (Blueprint $table) {
-            $table->renameColumn('content','post_content');
+            // $table->renameColumn('content','post_content');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('post_content_in_posts', function (Blueprint $table) {
-            $table->renameColumn('post_content','content');
+            // $table->renameColumn('post_content','content');
         });
     }
 };

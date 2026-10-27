@@ -21,11 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', [PostController::class, "index"])->name("posts.index");
-Route::get("/post/create", [PostController::class, "create"]);
-Route::get("/post/update", [PostController::class, "update"]);
-Route::get('/post/first-or-create', [PostController::class, 'firstOrCreate']);
-Route::get('/post/update-or-create', [PostController::class, 'updateOrCreate']);
+Route::get('/posts', [PostController::class, "index"])->name("post.index");
+Route::get("/posts/create", [PostController::class, "create"])->name("post.create");
+
+Route::post("/posts", [PostController::class, "store"])->name("post.store");
+Route::get("/posts/{post}", [PostController::class, "show"])->name("post.show");
+Route::get("/posts/{post}/edit", [PostController::class, "edit"])->name("post.edit");
+Route::patch("/posts/{post}", [PostController::class, "update"])->name("post.update");
+Route::delete("/posts/{post}", [PostController::class, "destroy"])->name("post.destroy");
+
+Route::get("/posts/update", [PostController::class, "update"]);
+Route::get('/posts/first-or-create', [PostController::class, 'firstOrCreate']);
+Route::get('/posts/update-or-create', [PostController::class, 'updateOrCreate']);
 
 Route::get('/main', [MainController::class,'index'])->name("main.index");
 Route::get('/contacts', [ContactController::class,'index'])->name("contact.index");

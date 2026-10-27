@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('post_content')->change();
+            // $table->string('post_content')->change();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->text('post_content')->change();
+            // $table->text('post_content')->change();
         });
     }
 };

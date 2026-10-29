@@ -14,17 +14,15 @@ class PostController extends Controller
         // dd($post->title);
         // dd('end');
 
-    // $cat = Category::find(1);
-        // $post = Post::find(1);
-        // dd($post->category);
-
         $posts = Post::all();
+
         return view("post.index", compact("posts"));
     }
 
     public function create()
     {
-        return view("post.create");
+        $categories = Category::all();
+        return view("post.create", compact("categories"));
     }
 
     public function store()
@@ -33,6 +31,7 @@ class PostController extends Controller
             "title" => "string",
             "content" => "string",
             "likes" => "string",
+            "category_id" => "string",
         ]);
 
         Post::create($data);
@@ -46,7 +45,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('post.edit', compact('post'));
+        $categories = Category::all();
+        return view('post.edit', compact('post', 'categories'));
     }
 
     public function update(Request $request, Post $post)
@@ -55,14 +55,16 @@ class PostController extends Controller
             "title" => "string",
             "content" => "string",
             "likes" => "string",
+            "category_id" => "string",
         ]);
 
         $post->update($data);
-        return redirect()->route('post.show', $post->id);                                                                                                                                                                                                                                                                                                                                                                                                               
+        return redirect()->route('post.show', $post->id);
 
     }
 
-    public function destroy(Post $post){
+    public function destroy(Post $post)
+    {
         $post->delete();
         return redirect()->route('post.index');
     }

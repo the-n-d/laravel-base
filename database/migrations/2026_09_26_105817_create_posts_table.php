@@ -21,6 +21,11 @@ return new class extends Migration {
             $table->boolean('is_published')->default(1);
             $table->timestamps();
             $table->softDeletes();
+            $table->unsignedBigInteger(column: 'category_id')->nullable();
+
+            $table->index(columns: 'category_id', name: 'post_category_idx');
+
+            $table->foreign(columns: 'category_id', name: 'post_category_fk')->on(table: 'categories')->references('id');
         });
     }
 

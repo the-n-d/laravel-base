@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,10 @@ class PostController extends Controller
         // $post = Post::where('is_published', 0)->first();
         // dd($post->title);
         // dd('end');
+
+    // $cat = Category::find(1);
+        // $post = Post::find(1);
+        // dd($post->category);
 
         $posts = Post::all();
         return view("post.index", compact("posts"));
@@ -53,7 +58,7 @@ class PostController extends Controller
         ]);
 
         $post->update($data);
-        return redirect()->route('post.show', $post->id);
+        return redirect()->route('post.show', $post->id);                                                                                                                                                                                                                                                                                                                                                                                                               
 
     }
 

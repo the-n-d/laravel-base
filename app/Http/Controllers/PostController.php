@@ -42,7 +42,7 @@ class PostController extends Controller
         unset($data['tags']);
 
         $post = Post::create($data);
- 
+
         $post->tags()->attach($tags);
 
         // foreach ($tags as $tag) {
@@ -64,7 +64,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-        return view('post.edit', compact('post', 'categories'));
+        return view('post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(Request $request, Post $post)
@@ -74,9 +74,15 @@ class PostController extends Controller
             "content" => "string",
             "likes" => "string",
             "category_id" => "string",
+            "tags" => "",
         ]);
 
+        $tags = $data["tags"];
+        unset($data['tags']);
+
         $post->update($data);
+        $post->tags()->sync($tags);
+
         return redirect()->route('post.show', $post->id);
 
     }

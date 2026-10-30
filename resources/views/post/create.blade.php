@@ -20,7 +20,15 @@
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" id="category" name="category_id">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->title }}</option> 
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Tags</label>
+                <select class="form-select" multiple name="tags[]" id="tags">
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->title }}</option>''
                     @endforeach
                 </select>
             </div>

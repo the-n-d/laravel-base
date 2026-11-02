@@ -27,16 +27,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/posts', IndexController::class)->name("post.index");
+Route::get("/posts/create", CreateController::class)->name("post.create");
 
-    Route::get('/posts', IndexController::class)->name("post.index");
-    Route::get("/posts/create", CreateController::class)->name("post.create");
-
-    Route::post("/posts", StoreController::class)->name("post.store");
-    Route::get("/posts/{post}", ShowController::class)->name("post.show");
-    Route::get("/posts/{post}/edit", EditController::class)->name("post.edit");
-    Route::patch("/posts/{post}", UpdateController::class)->name("post.update");
-    Route::delete("/posts/{post}", DestroyController::class)->name("post.destroy");
-
+Route::post("/posts", StoreController::class)->name("post.store");
+Route::get("/posts/{post}", ShowController::class)->name("post.show");
+Route::get("/posts/{post}/edit", EditController::class)->name("post.edit");
+Route::patch("/posts/{post}", UpdateController::class)->name("post.update");
+Route::delete("/posts/{post}", DestroyController::class)->name("post.destroy");
 
 Route::get('/main', [MainController::class, 'index'])->name("main.index");
 Route::get('/contacts', [ContactController::class, 'index'])->name("contact.index");

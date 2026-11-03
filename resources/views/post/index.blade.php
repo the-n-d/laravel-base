@@ -6,9 +6,13 @@
             <a class="btn btn-primary" href="{{ route('post.create') }}">Create New</a>
         </div>
         @foreach ($posts as $post)
-        <div>
-            <a href="{{ route('post.show', $post->id) }}">{{ $post->id }}. {{ $post->title }}</a>
-        </div>
+            <div>
+                <a href="{{ route('post.show', $post->id) }}">{{ $post->id }}. {{ $post->title }}</a>
+            </div>
         @endforeach
+        <div class="mt-3">
+            {{ $posts->links('pagination::bootstrap-5') }}
+        </div>
+
     </div>
 @endsection

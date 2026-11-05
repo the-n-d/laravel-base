@@ -11,7 +11,7 @@
             </div>
         @endforeach
         <div class="mt-3">
-            {{ $posts->links('pagination::bootstrap-5') }}
+            {{ $posts->withQueryString()->links('pagination::bootstrap-5') }}
         </div>
 
     </div>

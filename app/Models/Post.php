@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\Filterable;
 
 class Post extends Model
 {
     use SoftDeletes;
+    use Filterable;
     protected $guarded = [];
     public $sam_property = 'что-то';
     protected $table = 'posts';
